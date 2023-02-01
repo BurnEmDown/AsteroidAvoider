@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294439373}
   - component: {fileID: 294439374}
+  - component: {fileID: 294439375}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -167,6 +168,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3036e5c7d1dee43b3f51d2347d95cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 294439375}
+  forceMagnitude: 250
+  maxVelocity: 5
+--- !u!54 &294439375
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294439372}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &653260035
 GameObject:
   m_ObjectHideFlags: 0
