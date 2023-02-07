@@ -37,6 +37,21 @@ public class PlayerMovement : MonoBehaviour
         }
         */
 
+        ProcessInput();
+        KeepPlayerOnScreen();
+    }
+
+    private void FixedUpdate()
+    {
+        if (movementDirection == Vector3.zero) return;
+        
+        rb.AddForce(movementDirection * forceMagnitude, ForceMode.Force);
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+    }
+
+    private void ProcessInput()
+    {
         if (Touchscreen.current.primaryTouch.press.isPressed)
         {
             Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
@@ -52,12 +67,28 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void KeepPlayerOnScreen()
     {
-        if (movementDirection == Vector3.zero) return;
-        
-        rb.AddForce(movementDirection * forceMagnitude, ForceMode.Force);
+        Vector3 newPosition = transform.position;
+        Vector3 viewPortPosition = mainCamera.WorldToViewportPoint(transform.position);
+        if (viewPortPosition.x > 1)
+        {
+            newPosition.x = -newPosition.x + 0.1f;
+        }
+        else if (viewPortPosition.x < 0)
+        {
+            newPosition.x = -newPosition.x - 0.1f;
+        }
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        if (viewPortPosition.y > 1)
+        {
+            newPosition.y = -newPosition.y + 0.1f;
+        }
+        else if (viewPortPosition.y < 0)
+        {
+            newPosition.y = -newPosition.y - 0.1f;
+        }
+        
+        transform.position = newPosition;
     }
 }
