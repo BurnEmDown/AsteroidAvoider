@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
@@ -9,5 +10,10 @@ public class Asteroid : MonoBehaviour
         {
             playerHealth.Crash();
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }
