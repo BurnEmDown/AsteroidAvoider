@@ -102,4 +102,9 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation,
             rotationSpeed * Time.deltaTime);
     }
+
+    public void ResetVelocity()
+    {
+        rb.velocity = Vector3.zero;
+    }
 }
